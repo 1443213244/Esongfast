@@ -4,14 +4,14 @@ export PATH
 
 #=================================================
 #	System Required: CentOS 6/7,Debian 8/9,Ubuntu 16+
-#	Description: BBR+BBR魔改版+BBRplus+Lotserver
+#	Description: Esongfast加速
 #	Version: 1.3.1
-#	Author: 千影,cx9208
-#	Blog: https://www.94ish.me/
+#	Author: RexChou
+#	Website: https://www.cserver.org/
 #=================================================
 
 sh_ver="1.3.1"
-github="raw.githubusercontent.com/cx9208/Linux-NetSpeed/master"
+github="raw.githubusercontent.com/1443213244/Linux-NetSpeed/master"
 
 Green_font_prefix="\033[32m" && Red_font_prefix="\033[31m" && Green_background_prefix="\033[42;37m" && Red_background_prefix="\033[41;37m" && Font_color_suffix="\033[0m"
 Info="${Green_font_prefix}[信息]${Font_color_suffix}"
@@ -95,13 +95,13 @@ installlot(){
 	fi
 	detele_kernel
 	BBR_grub
-	echo -e "${Tip} 重启VPS后，请重新运行脚本开启${Red_font_prefix}Lotserver${Font_color_suffix}"
-	stty erase '^H' && read -p "需要重启VPS后，才能开启Lotserver，是否现在重启 ? [Y/n] :" yn
-	[ -z "${yn}" ] && yn="y"
-	if [[ $yn == [Yy] ]]; then
-		echo -e "${Info} VPS 重启中..."
-		reboot
-	fi
+	echo -e "${Tip} 重启服务器后，请重新运行脚本开启${Red_font_prefix}Lotserver${Font_color_suffix}"
+	#stty erase '^H' && read -p "需要重启VPS后，才能开启Lotserver，是否现在重启 ? [Y/n] :" yn
+	#[ -z "${yn}" ] && yn="y"
+	#if [[ $yn == [Yy] ]]; then
+		echo -e "${Info} 请确认grub引导正确后，重启服务启..."
+		#reboot
+	#fi
 }
 
 #启用BBR
@@ -209,7 +209,7 @@ startlotserver(){
 		apt-get update
 		apt-get install ethtool
 	fi
-	bash <(wget --no-check-certificate -qO- https://github.com/MoeClub/lotServer/raw/master/Install.sh) install
+	bash <(wget --no-check-certificate -qO- https://github.com/1443213244/lotServer/raw/master/Install.sh) install
 	start_menu
 }
 
@@ -252,7 +252,7 @@ remove_all(){
 	sed -i '/net.ipv4.tcp_timestamps/d' /etc/sysctl.conf
 	sed -i '/net.ipv4.tcp_max_orphans/d' /etc/sysctl.conf
 	if [[ -e /appex/bin/lotServer.sh ]]; then
-		bash <(wget --no-check-certificate -qO- https://github.com/MoeClub/lotServer/raw/master/Install.sh) uninstall
+		bash <(wget --no-check-certificate -qO- https://github.com/1443213244/lotServer/raw/master/Install.sh) uninstall
 	fi
 	clear
 	echo -e "${Info}:清除加速完成。"
